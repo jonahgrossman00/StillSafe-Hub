@@ -1,12 +1,5 @@
 streamlit
-sqlalchemy
 scikit-learn
-Path
-xgboost
 pandas
 numpy
-datetime
-matplotlib
-joblib
-json
 boto3
