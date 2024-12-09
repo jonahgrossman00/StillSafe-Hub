@@ -8,17 +8,40 @@ import pickle
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 
+# runtime = boto3.client(
+#     "sagemaker-runtime",
+#     region_name="us-east-1",
+# )
+IDENTITY_POOL_ID = "us-east-1:2ac8666d-0dab-4ad1-8584-fb59e6d5da4c"
+ENDPOINT_NAME = "xgboost-2024-12-09-23-51-46-022"
+
+def get_cognito_credentials(identity_pool_id, region_name="us-east-1"):
+    try:
+        # Initialize Cognito Identity client
+        cognito = boto3.client("cognito-identity", region_name=region_name)
+        
+        # Get Identity ID
+        identity_id = cognito.get_id(IdentityPoolId=identity_pool_id)["IdentityId"]
+        
+        # Get temporary credentials
+        credentials = cognito.get_credentials_for_identity(IdentityId=identity_id)["Credentials"]
+        return credentials
+    except Exception as e:
+        raise ValueError(f"Error retrieving Cognito credentials: {e}")
+
+credentials = get_cognito_credentials(identity_pool_id=IDENTITY_POOL_ID)
+
 runtime = boto3.client(
-    "sagemaker-runtime",
-    region_name="us-east-1",
-)
+            "sagemaker-runtime",
+            region_name="us-east-1",
+            aws_access_key_id=credentials["AccessKeyId"],
+            aws_secret_access_key=credentials["SecretKey"],
+            aws_session_token=credentials["SessionToken"],
+        )
 
 # Load scaler from training
 with open('scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
-
-# SageMaker endpoint name
-ENDPOINT_NAME = ""  # Replace with your actual endpoint name
 
 def preprocess_input(input_data, scaler):
     try:
