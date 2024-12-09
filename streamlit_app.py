@@ -14,7 +14,7 @@ runtime = boto3.client(
 )
 
 # Load scaler from training
-with open('/workspaces/StillSafe-Hub/scaler.pkl', 'rb') as f:
+with open('scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
 
 # SageMaker endpoint name
