@@ -13,7 +13,7 @@ from sklearn.preprocessing import StandardScaler
 #     region_name="us-east-1",
 # )
 IDENTITY_POOL_ID = "us-east-1:2ac8666d-0dab-4ad1-8584-fb59e6d5da4c"
-ENDPOINT_NAME = "xgboost-2024-12-09-23-51-46-022"
+ENDPOINT_NAME = "xgboost-2024-12-10-17-31-33-191"
 
 def get_cognito_credentials(identity_pool_id, region_name="us-east-1"):
     try:
@@ -113,32 +113,34 @@ def predict_sagemaker(input_data, endpoint_name):
         # Convert the rounded predictions into risk messages
         if rounded_predictions[0] == 0:
             risk_message = (
-                "We are pleased to inform you that our predictive model indicates a low likelihood of stillbirth based on the "
-                "information you provided. While this is encouraging, ongoing prenatal care remains essential for ensuring a healthy pregnancy.\n\n"
-                "**Recommendations for Continued Care:**\n"
-                "- **Attend Regular Check-ups**: Keep all scheduled appointments to monitor your pregnancy.\n"
-                "- **Monitor Signs and Symptoms**: Stay attentive to your body and your baby’s movements, and report any concerns to your healthcare provider.\n"
-                "- **Maintain a Healthy Lifestyle**: Follow medical advice on nutrition, exercise, and stress management.\n\n"
-                "For additional information, visit our *Tips for Success* section on our website. It provides valuable insights "
-                "to help you maintain a healthy pregnancy.\n\n"
+                "We are pleased to inform you that our predictive model indicates a <strong>low likelihood of stillbirth</strong> "
+                "based on the information you provided. While this is encouraging, ongoing prenatal care remains essential for "
+                "ensuring a healthy pregnancy.<br><br>"
+                "<strong>Recommendations for Continued Care:</strong><br>"
+                "- <strong>Attend Regular Check-ups</strong>: Keep all scheduled appointments to monitor your pregnancy.<br>"
+                "- <strong>Monitor Signs and Symptoms</strong>: Stay attentive to your body and your baby’s movements, and report "
+                "any concerns to your healthcare provider.<br>"
+                "- <strong>Maintain a Healthy Lifestyle</strong>: Follow medical advice on nutrition, exercise, and stress management.<br><br>"
+                "For additional information, visit our <em>Tips for Success</em> section on our website. It provides valuable insights "
+                "to help you maintain a healthy pregnancy.<br><br>"
                 "Thank you for your commitment to your health and your baby’s well-being. If you have any concerns, please reach out to your "
                 "healthcare provider. Wishing you a smooth and healthy pregnancy!"
             )
         else:
             risk_message = (
-                "We regret to inform you that our model has identified a potential high risk for stillbirth based on the "
-                "information you provided. This is not a guarantee of stillbirth but an indication that further medical "
-                "evaluation is crucial. We strongly recommend scheduling an appointment with your healthcare provider "
-                "immediately to discuss these results and determine the best course of action.\n\n"
-                "**Immediate Steps to Take:**\n"
-                "- **Consult a Healthcare Provider**: Schedule an appointment as soon as possible.\n"
-                "- **Monitor Symptoms**: Pay close attention to changes in symptoms or fetal movements and report them promptly.\n"
-                "- **Seek Support**: Reach out to loved ones or support groups during this challenging time.\n"
-                "- **Maintain a Healthy Lifestyle**: Focus on a balanced diet, appropriate physical activity, and stress management.\n\n"
-                "For additional guidance, please visit our *Tips for Success* section on our website, where you’ll find "
-                "helpful strategies and resources.\n\n"
-                "Your health and your baby’s well-being are our utmost priority. With timely intervention, the risk can often be mitigated. "
-                "Wishing you strength and support during this time."
+                "We regret to inform you that our model has identified a <strong>potential high risk for stillbirth</strong> based on the "
+                "information you provided. This is not a guarantee of stillbirth but an indication that further medical evaluation is "
+                "crucial. We strongly recommend scheduling an appointment with your healthcare provider immediately to discuss these results "
+                "and determine the best course of action.<br><br>"
+                "<strong>Immediate Steps to Take:</strong><br>"
+                "- <strong>Consult a Healthcare Provider</strong>: Schedule an appointment as soon as possible.<br>"
+                "- <strong>Monitor Symptoms</strong>: Pay close attention to changes in symptoms or fetal movements and report them promptly.<br>"
+                "- <strong>Seek Support</strong>: Reach out to loved ones or support groups during this challenging time.<br>"
+                "- <strong>Maintain a Healthy Lifestyle</strong>: Focus on a balanced diet, appropriate physical activity, and stress management.<br><br>"
+                "For additional guidance, please visit our <em>Tips for Success</em> section on our website, where you’ll find helpful strategies "
+                "and resources.<br><br>"
+                "Your health and your baby’s well-being are our utmost priority. With timely intervention, the risk can often be mitigated. Wishing you "
+                "strength and support during this time."
             )
         # Return a dictionary with success status and risk message
         return risk_message
