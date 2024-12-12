@@ -113,7 +113,7 @@ def predict_sagemaker(input_data, endpoint_name):
         # Convert the rounded predictions into risk messages
         if rounded_predictions[0] == 0:
             risk_message = (
-                "We are pleased to inform you that our predictive model indicates a <strong>low likelihood of stillbirth</strong> "
+                "We are pleased to inform you that our predictive model indicates a <strong>LOW likelihood of stillbirth</strong> "
                 "based on the information you provided. While this is encouraging, ongoing prenatal care remains essential for "
                 "ensuring a healthy pregnancy.<br><br>"
                 "<strong>Recommendations for Continued Care:</strong><br>"
@@ -128,7 +128,7 @@ def predict_sagemaker(input_data, endpoint_name):
             )
         else:
             risk_message = (
-                "We regret to inform you that our model has identified a <strong>potential high risk for stillbirth</strong> based on the "
+                "We regret to inform you that our model has identified a <strong>potential HIGH risk for stillbirth</strong> based on the "
                 "information you provided. This is not a guarantee of stillbirth but an indication that further medical evaluation is "
                 "crucial. We strongly recommend scheduling an appointment with your healthcare provider immediately to discuss these results "
                 "and determine the best course of action.<br><br>"
