@@ -8,12 +8,8 @@ import pickle
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 
-# runtime = boto3.client(
-#     "sagemaker-runtime",
-#     region_name="us-east-1",
-# )
 IDENTITY_POOL_ID = "us-east-1:2ac8666d-0dab-4ad1-8584-fb59e6d5da4c"
-ENDPOINT_NAME = "xgboost-2024-12-10-17-31-33-191"
+ENDPOINT_NAME = "xgboost-241217-2256-011-e160200c"
 
 def get_cognito_credentials(identity_pool_id, region_name="us-east-1"):
     try:
@@ -293,34 +289,40 @@ if st.session_state["tab_selection"] == "Home":
     # About StillSafe
     st.markdown("<h3 style='color:#C45BAA;'>About StillSafe</h3>", unsafe_allow_html=True)
     st.write("""
-    At **StillSafe**, we are on a mission to reduce the heartbreak of stillbirth by providing expecting families with the tools, 
-    knowledge, and support they need for a safe pregnancy journey. By harnessing the power of advanced machine learning, we aim to 
-    identify risks early—empowering families with personalized insights to make informed decisions.
+    **StillSafe** is a groundbreaking tool developed by a dedicated team of UC Berkeley Master of Information and Data Science (MIDS) 
+    students to address the sensitive and critical issue of stillbirth. Our innovative solution leverages advanced machine learning to 
+    predict the risk of stillbirth early, equipping expecting families with actionable insights and personalized support. By identifying
+     key risk factors, we aim to empower families and underserved communities with knowledge and tools to improve pregnancy outcomes.
+
+    At **StillSafe**, we recognize the deep emotional and societal impact of stillbirth. Our platform is designed not only to provide hope 
+    but to foster equity in healthcare access and decision-making for all families navigating their pregnancy journey.
     """)
 
     # Why We Care
     st.markdown("<h3 style='color:#C45BAA;'>Why We Care</h3>", unsafe_allow_html=True)
     st.write("""
-    Each year, approximately 21,000 families in the United States endure the devastating loss of a stillbirth—a tragedy 
-    that is often preventable. Research shows that up to 80% of stillbirths may be avoided with early intervention. 
-    At **StillSafe**, we turn data into action, creating innovative tools to help families and healthcare providers 
-    collaborate for safer pregnancies.
+    Every year, 2 million stillbirths occur globally, with 1 in every 175 babies stillborn in the United States alone.
+     Most of these tragedies happen unexpectedly in seemingly healthy pregnancies, leaving families overwhelmed with grief, 
+    guilt, and financial burdens of up to $9,000. Research shows that 80% of stillbirths are preventable through early detection, 
+    timely intervention, and equitable access to quality healthcare. At **StillSafe**, we are driven by the belief that no family should 
+    endure this heartbreak. By harnessing data and machine learning, we aim to identify risks early and provide families with the 
+    tools they need to act—saving lives when it matters most.
     """)
 
     # Our Mission
     st.markdown("<h3 style='color:#C45BAA;'>Our Mission</h3>", unsafe_allow_html=True)
     st.write("""
-    To ensure no family experiences a preventable stillbirth by providing accessible, evidence-based 
-    risk assessment tools and empowering support throughout pregnancy.
+    Our mission is to empower pregnant individuals and their families with a groundbreaking, data-driven 
+    tool that predicts the risk of stillbirth early, offering hope, action, and equity when it matters most.
     """)
 
     # How It Works
     st.markdown("<h3 style='color:#C45BAA;'>How It Works</h3>", unsafe_allow_html=True)
     st.write("""
     - **Input Key Information:** Enter basic health and demographic details into our secure, user-friendly platform.
-    - **Personalized Risk Assessment:** Our advanced machine learning tool identifies pregnancies at higher risk for stillbirth.
+    - **Personalized Risk Assessment:** Our advanced machine learning tool identifies pregnancies at high or low risk for stillbirth.
     - **Tips for Success:** Explore our medically-approved Guide to a Safe and Healthy Pregnancy for actionable recommendations.
-    - **Feedback Section:** Share your thoughts and help us improve by providing feedback directly through our platform.
+    - **Feedback Section:** Help us enhance and refine our platform by sharing your thoughts and suggestions directly with us.
     """)
 
     # Image and Content Layout
@@ -363,7 +365,7 @@ elif st.session_state["tab_selection"] == "Risk Assessment":
     with col2:
         st.markdown("<h1 style='color:#C45BAA;'>Risk Assessment Tool</h1>", unsafe_allow_html=True)
 
-    st.write("Provide the following information to receive a personalized pregnancy risk assessment.")
+    st.write("Please provide the following information to receive a personalized pregnancy risk assessment.")
 
     # User Inputs
     delivery_month = st.selectbox("What month are you expecting to have your baby?", 
@@ -508,16 +510,6 @@ elif st.session_state["tab_selection"] == "Risk Assessment":
             unsafe_allow_html=True,
         )
 
-        # st.markdown(
-        #     f"""
-        #     <div style="background-color: #EAFBF1; border-left: 5px solid #62A87C; padding: 10px; border-radius: 10px; margin-top: 20px;">
-        #         <p style="color: #3D405B; font-size: 16px; margin: 0;">
-        #             <strong>Prediction:</strong> {prediction}
-        #         </p>
-        #     </div>
-        #     """,
-        #     unsafe_allow_html=True,
-        # )
 
     st.markdown("---")
     st.markdown("<h3 style='color:#C45BAA;'>Disclaimer</h3>", unsafe_allow_html=True)
@@ -539,7 +531,7 @@ elif st.session_state["tab_selection"] == "Meet Our Team":
     # Title in the right column
     with col2:
         st.markdown("<h1 style='color:#C45BAA;'>Meet Our Team</h1>", unsafe_allow_html=True)
-    st.write("At StillSafe, we’re a team of Master’s students from UC Berkeley, studying Information and Data Science, brought together by a shared passion for supporting moms-to-be and their little ones. We’re dedicated to using technology in a thoughtful, caring way to create tools that truly make a difference. With our hearts in the right place and our skills at work, we’re here to help make every pregnancy journey safer, more supported, and filled with confidence.")
+    st.write("At **StillSafe**, we’re a team of Master’s students from UC Berkeley, studying Information and Data Science, brought together by a shared passion for supporting moms-to-be and their little ones. We’re dedicated to using technology in a thoughtful, caring way to create tools that truly make a difference. With our hearts in the right place and our skills at work, we’re here to help make every pregnancy journey safer, more supported, and filled with confidence.")
     
     # Team Members with Photos and Emails
     team_members = [
@@ -718,7 +710,7 @@ elif st.session_state["tab_selection"] == "Feedback":
     with col2:
         st.markdown("<h1 style='color:#C45BAA;'>Feedback</h1>", unsafe_allow_html=True)
     st.title("We’d Love to Hear From You!")
-    st.write("Welcome to our feedback section! Please feel free to ask us any questions or share your feedback.")
+    st.write("Your thoughts and suggestions are important to us. Whether you have questions, ideas, or feedback, we’d love to hear from you as we work to make **StillSafe** even better.")
     
     feedback = st.text_area("Your Feedback", placeholder="Type your message here...")
     
